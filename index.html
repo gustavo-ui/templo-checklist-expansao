@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Templo Jiu-Jitsu | Checklist: Estrutura de Expansão</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#000000;
+  --paper:#FFFFFF;
+  --stone:#EDEBE7;
+  --stone-dark:#D6D3CD;
+  --muted:#5F5C57;
+  --line:#CFCCC6;
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Times New Roman",serif;
+  --sans:"Zen Kaku Gothic New","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* Navegação */
+.nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--serif);font-weight:700;font-size:18px}
+.nav-brand svg{width:40px;height:auto}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;font-size:15px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+@media (max-width:720px){.nav-links{display:none}}
+
+/* Hero */
+.hero{max-width:1120px;margin:0 auto;padding:96px 24px 88px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(44px,6.4vw,84px);line-height:1.02;letter-spacing:-.01em}
+.hero p{margin-top:28px;max-width:46ch;font-size:19px;color:var(--muted)}
+.hero-mark{display:flex;flex-direction:column;gap:0}
+.tier{display:block;text-decoration:none;border-top:1px solid var(--line);padding:22px 0;transition:padding-left .25s}
+.tier:last-child{border-bottom:1px solid var(--line)}
+.tier:hover{padding-left:10px}
+.tier small{display:block;font-size:14px;color:var(--muted)}
+.tier strong{display:block;font-family:var(--serif);font-weight:700;font-size:26px;line-height:1.25;margin-top:2px}
+.logo-big{width:100%;max-width:420px;margin-bottom:40px}
+@media (max-width:860px){.hero{grid-template-columns:1fr;gap:48px;padding:64px 24px}}
+
+/* Seções de documento */
+.doc{border-top:1px solid var(--ink)}
+.doc-head{background:var(--ink);color:var(--paper)}
+.doc-head-inner{max-width:1120px;margin:0 auto;padding:72px 24px 64px;display:grid;grid-template-columns:120px 1fr;gap:32px;align-items:start}
+.doc-num{font-family:var(--serif);font-size:96px;line-height:.85;font-weight:800}
+.doc-head h2{font-family:var(--serif);font-weight:700;font-size:clamp(34px,4.4vw,56px);line-height:1.08}
+.doc-head .sub{margin-top:12px;color:#BDBAB4;font-size:17px}
+@media (max-width:720px){.doc-head-inner{grid-template-columns:1fr;gap:12px;padding:56px 24px 48px}.doc-num{font-size:64px}}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.about{display:grid;grid-template-columns:1fr 2fr;gap:48px;padding:64px 0;border-bottom:1px solid var(--line)}
+.about h3{font-family:var(--serif);font-size:24px;font-weight:700}
+.about div p{max-width:62ch;font-size:18px}
+.about div p+p{margin-top:16px}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:16px;padding:48px 0}}
+
+/* Fases (sequência) */
+.phases{padding:24px 0 72px}
+.phase{display:grid;grid-template-columns:1fr 2fr;gap:48px;padding:48px 0;border-bottom:1px solid var(--line)}
+.phase:last-child{border-bottom:none}
+.phase-title{position:sticky;top:96px;align-self:start}
+.phase-title .tag{font-size:14px;color:var(--muted)}
+.phase-title h4{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1.15;margin-top:4px}
+.phase-title p{margin-top:12px;color:var(--muted);font-size:15px;max-width:30ch}
+@media (max-width:860px){.phase{grid-template-columns:1fr;gap:20px;padding:40px 0}.phase-title{position:static}}
+
+/* Checklist */
+.check{list-style:none}
+.check>li{border-top:1px solid var(--stone)}
+.check>li:first-child{border-top:none}
+.item{display:grid;grid-template-columns:24px 1fr;gap:14px;padding:13px 0;cursor:pointer;align-items:start}
+.item input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:1.5px solid var(--ink);margin-top:4px;cursor:pointer;display:grid;place-content:center;background:var(--paper)}
+.item input::after{content:"";width:10px;height:6px;border-left:2px solid var(--paper);border-bottom:2px solid var(--paper);transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.item input:checked{background:var(--ink)}
+.item input:checked::after{opacity:1}
+.item input:checked+span{color:var(--muted)}
+.item span b{font-weight:700}
+.item .def{display:block;color:var(--muted);font-size:15px;margin-top:2px}
+.done-label{display:inline-block;margin-left:8px;font-size:13px;padding:1px 10px;border:1px solid var(--ink);border-radius:20px;vertical-align:2px}
+.check ul{list-style:none;margin:0 0 14px 38px;border-left:1px solid var(--line);padding-left:18px}
+.check ul li{font-size:15.5px;padding:5px 0;color:#2A2926}
+.check ul li b{font-weight:700}
+.check ul li .def{color:var(--muted)}
+.check ul ul{margin:4px 0 6px 0}
+.note{margin-top:20px;padding:18px 20px;background:var(--stone);font-size:15.5px;max-width:62ch}
+
+/* Doc 2: partes */
+.parts{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0 0 72px}
+.part{padding:48px 40px 48px 0}
+.part+.part{padding:48px 0 48px 40px;border-left:1px solid var(--line)}
+.part .tag{font-size:14px;color:var(--muted)}
+.part h4{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1.15;margin:4px 0 6px}
+.part .rule{display:inline-block;font-size:14px;padding:3px 12px;margin-bottom:28px}
+.part .rule.req{background:var(--ink);color:var(--paper)}
+.part .rule.opt{border:1px solid var(--ink)}
+.group{margin-bottom:28px}
+.group h5{font-family:var(--serif);font-size:20px;font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--ink);margin-bottom:6px}
+.group h5 small{font-family:var(--sans);font-weight:400;font-size:13.5px;color:var(--muted);display:block;margin-top:2px}
+.plain{list-style:none}
+.plain li{padding:8px 0 8px 18px;border-bottom:1px solid var(--stone);position:relative;font-size:15.5px}
+.plain li::before{content:"";position:absolute;left:0;top:18px;width:6px;height:6px;background:var(--ink)}
+.plain li:last-child{border-bottom:none}
+@media (max-width:860px){.parts{grid-template-columns:1fr}.part,.part+.part{padding:40px 0;border-left:none}.part+.part{border-top:1px solid var(--line)}}
+
+/* Doc 3 */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:40px 24px 40px 0}
+.stat+.stat{padding-left:24px;border-left:1px solid var(--line)}
+.stat strong{display:block;font-family:var(--serif);font-size:48px;font-weight:800;line-height:1}
+.stat span{display:block;margin-top:8px;color:var(--muted);font-size:15px}
+@media (max-width:640px){.stats{grid-template-columns:1fr}.stat,.stat+.stat{padding:24px 0;border-left:none}.stat+.stat{border-top:1px solid var(--line)}}
+
+.arc{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:56px 0;border-bottom:1px solid var(--line)}
+.arc-step{padding-right:28px;position:relative}
+.arc-step+.arc-step{padding-left:28px;border-left:1px solid var(--line)}
+.arc-step svg{width:64px;height:auto;margin-bottom:16px}
+.arc-step .tag{font-size:14px;color:var(--muted)}
+.arc-step h4{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1.15;margin:2px 0 8px}
+.arc-step p{font-size:15.5px}
+.arc-step .cta{margin-top:14px;font-size:14.5px;padding-top:12px;border-top:1px dashed var(--line);color:var(--muted)}
+.arc-step .cta b{color:var(--ink)}
+@media (max-width:860px){.arc{grid-template-columns:1fr}.arc-step,.arc-step+.arc-step{padding:28px 0;border-left:none}.arc-step+.arc-step{border-top:1px solid var(--line)}}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:56px 0;border-bottom:1px solid var(--line)}
+.two-col h4{font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:12px}
+.formats li b{font-weight:700}
+@media (max-width:860px){.two-col{grid-template-columns:1fr;gap:40px;padding:48px 0}}
+
+.month{padding:56px 0 8px}
+.month-head{display:flex;align-items:baseline;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.month-head h4{font-family:var(--serif);font-size:30px;font-weight:700}
+.month-head span{color:var(--muted);font-size:15px}
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:760px;border-collapse:collapse;font-size:15px}
+thead th{text-align:left;font-weight:700;font-size:14px;padding:12px 16px;background:var(--ink);color:var(--paper)}
+thead th:first-child{width:64px;text-align:center}
+tbody td{padding:16px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody td:first-child{font-family:var(--serif);font-size:24px;font-weight:800;text-align:center;line-height:1.1}
+tbody tr:nth-child(even) td{background:#F7F6F4}
+td .topic{display:block;font-size:13px;color:var(--muted);margin-bottom:2px}
+
+.closing{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:56px 0 88px}
+.closing h4{font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:10px}
+@media (max-width:860px){.closing{grid-template-columns:1fr;gap:32px}}
+
+/* Rodapé */
+footer{background:var(--ink);color:var(--paper)}
+.foot{max-width:1120px;margin:0 auto;padding:64px 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.foot svg{width:120px;height:auto}
+.foot p{font-family:var(--serif);font-size:22px;font-weight:700;max-width:24ch;line-height:1.3}
+.foot small{display:block;margin-top:10px;font-family:var(--sans);font-weight:400;font-size:14px;color:#BDBAB4}
+
+@media print{.nav{display:none}.phase-title{position:static}.doc-head,footer,thead th{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+
+<!-- Símbolo da marca reutilizado -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="templo" viewBox="14 10 172 74">
+    <path d="M60 18C60 26 64 27 70 27L130 27C136 27 140 26 140 18L140 28C140 36 136 38 130 38L70 38C64 38 60 36 60 28Z"/>
+    <path d="M40 38C40 46 44 47 50 47L150 47C156 47 160 46 160 38L160 48C160 56 156 58 150 58L50 58C44 58 40 56 40 48Z"/>
+    <path d="M20 58C20 66 24 67 30 67L170 67C176 67 180 66 180 58L180 68C180 76 176 78 170 78L30 78C24 78 20 76 20 68Z"/>
+  </symbol>
+</svg>
+
+<main>
+<section class="doc" style="border-top:none" id="expansao">
+  <div class="doc-head">
+    <div class="doc-head-inner">
+      <div class="doc-num"><svg viewBox="14 10 172 74" fill="#fff" style="width:110px;height:auto" role="img" aria-label="Templo Jiu-Jitsu"><use href="#templo"/></svg></div>
+      <div>
+        <h2>Checklist: Estrutura de Expansão</h2>
+        <p class="sub">Modelo de expansão: licença de uso de marca (marca já registrada)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="about">
+      <h3>Sobre este documento</h3>
+      <div>
+        <p>Este checklist reúne tudo o que a Templo Jiu-Jitsu precisa estruturar para expandir a marca com segurança, no modelo de licença de uso de marca.</p>
+        <p>Ele está dividido em fases, na ordem em que devem ser construídas: da validação da unidade modelo à implantação e acompanhamento das novas unidades.</p>
+        <p>Os itens marcados indicam etapas já finalizadas. O objetivo é garantir que toda unidade Templo, em qualquer cidade, entregue a mesma experiência, o mesmo método e a mesma cultura.</p>
+      </div>
+    </div>
+
+    <div class="phases">
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Pré-requisito</span><h4>Unidade modelo</h4><p>A prova que sustenta a venda da licença.</p></div>
+        <div>
+          <ul class="check">
+            <li><label class="item"><input type="checkbox"><span>Números reais da matriz documentados</span></label>
+              <ul><li>Alunos ativos</li><li>Ticket médio</li><li>Custos fixos e variáveis</li><li>Margem</li></ul>
+            </li>
+          </ul>
+          <p class="note">Esses dados são a base do estudo de viabilidade e a prova que sustenta a venda da licença.</p>
+        </div>
+      </article>
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Fase 0</span><h4>Jurídico</h4><p>A proteção da marca e das regras do jogo.</p></div>
+        <ul class="check">
+          <li><label class="item"><input type="checkbox"><span><b>Contrato de licença de uso de marca</b><span class="def">Documento que autoriza o parceiro a usar o nome Templo, com regras.</span></span></label>
+            <ul>
+              <li><b>Prazo e renovação:</b> <span class="def">por quanto tempo vale e como renova.</span></li>
+              <li><b>Território e exclusividade:</b> <span class="def">área onde o licenciado atua e se outra unidade pode abrir ali.</span></li>
+              <li><b>Remuneração:</b> <span class="def">quanto o licenciado paga (taxa inicial e/ou mensalidade).</span></li>
+              <li><b>Padrões de qualidade e auditoria:</b> <span class="def">o mínimo que a unidade precisa cumprir e como a marca fiscaliza.</span></li>
+              <li><b>Certificação de professores:</b> <span class="def">só pode usar a marca quem tem professor certificado pela Templo.</span></li>
+              <li><b>Rescisão e perda do direito de uso:</b> <span class="def">em quais situações o contrato acaba.</span></li>
+              <li><b>Uso da marca após o fim:</b> <span class="def">prazo para retirar fachada, logo, perfis e materiais.</span></li>
+              <li><b>Transferência da unidade:</b> <span class="def">regras se o licenciado quiser vender ou sair, com direito de preferência da marca na compra.</span></li>
+            </ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span><b>Averbação no INPI</b><span class="def">Registro do contrato no órgão de marcas. Dá validade contra terceiros e segurança aos pagamentos.</span></span></label></li>
+          <li><label class="item"><input type="checkbox"><span><b>Parecer sobre risco de franquia</b><span class="def">Análise de um advogado dizendo se o modelo pode ser enquadrado como franquia pela Lei 13.966/2019. Se for, exige COF (Circular de Oferta de Franquia) e outras obrigações.</span></span></label></li>
+          <li><label class="item"><input type="checkbox"><span><b>Registro da marca nas classes certas</b><span class="def">Proteção do nome em ensino (classe 41) e em kimonos e vestuário (classe 25).</span></span></label></li>
+          <li><label class="item"><input type="checkbox"><span><b>Acordo de confidencialidade</b><span class="def">Impede que o licenciado use ou divulgue o método fora da rede.</span></span></label></li>
+          <li><label class="item"><input type="checkbox"><span><b>Política de LGPD</b><span class="def">Regras para tratar os dados dos alunos compartilhados entre unidade e marca.</span></span></label></li>
+          <li><label class="item"><input type="checkbox"><span><b>Termo de uso de imagem</b><span class="def">Autorização dos alunos (e responsáveis, no caso de menores) para aparecer em fotos e vídeos.</span></span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Fase 1</span><h4>Base: identidade</h4><p>Quem a Templo é, em qualquer cidade.</p></div>
+        <ul class="check">
+          <li><label class="item"><input type="checkbox"><span>História da Templo documentada</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Visão, valores e objetivos</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Cultura: tatame, atendimento e comunidade</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Posicionamento: por que a Templo e não outra equipe, para o aluno e para o licenciado</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Manual da marca</span></label>
+            <ul><li>Logo e variações</li><li>Cores e tipografia</li><li>Uniformes e kimonos</li><li>Fachada e sinalização</li><li>Tom de voz</li></ul>
+          </li>
+        </ul>
+      </article>
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Fase 2</span><h4>Método</h4><p>Como a Templo ensina e forma professores.</p></div>
+        <ul class="check">
+          <li><label class="item"><input type="checkbox"><span>Metodologia Templo Jiu-Jitsu documentada</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Metodologia kids separada da adulta</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Plano de aula padrão: estrutura da aula do início ao fim</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Posições obrigatórias por graduação</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Critérios de troca de faixa</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Certificação de professores</span></label>
+            <ul><li>Pré-requisitos (faixa mínima)</li><li>Trilha de formação online</li><li>Avaliação prática e teórica</li><li>Níveis (instrutor, professor, head coach)</li><li>Renovação e perda do selo</li></ul>
+          </li>
+        </ul>
+      </article>
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Fase 3</span><h4>Operação</h4><p>O dia a dia da unidade e os números que a sustentam.</p></div>
+        <ul class="check">
+          <li><label class="item"><input type="checkbox"><span>Manual de operação da unidade</span></label>
+            <ul><li>Padrão do espaço</li><li>Grade de horários e turmas</li><li>Roteiro de atendimento</li><li>Tabela de preços e descontos</li><li>Abertura, fechamento e limpeza</li><li>Regras de conduta</li><li>Contratação de equipe</li></ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span>Requisitos do ponto: localização, metragem e tatame mínimos</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Fornecedores</span></label>
+            <ul><li>Produtos padronizados</li><li>Critérios de homologação</li><li>Condições comerciais</li></ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span>Indicadores da unidade</span></label>
+            <ul><li>Alunos ativos</li><li>Conversão da aula experimental</li><li>Cancelamentos</li><li>Ticket médio</li></ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span>Estudo de viabilidade da unidade<span class="def">Com premissas, nunca como promessa de retorno.</span></span></label>
+            <ul><li>Investimento inicial</li><li>Custo fixo mensal</li><li>Número de alunos para o breakeven</li><li>Retorno médio e payback</li><li>Cenários: conservador, realista e otimista</li></ul>
+          </li>
+        </ul>
+      </article>
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Fase 4</span><h4>Ferramentas</h4><p>Os sistemas que a rede usa.</p></div>
+        <ul class="check">
+          <li><label class="item"><input type="checkbox"><span>Templo Online: plataforma de professores</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Templo Online: plataforma do aluno</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Aplicativo de controle de presença</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Sistema de gestão financeira</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>CRM para leads e funil de matrícula</span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Fase 5</span><h4>Comunicação</h4><p>Os canais da marca Templo Jiu-Jitsu.</p></div>
+        <ul class="check">
+          <li><label class="item"><input type="checkbox"><span>Site institucional da marca</span></label>
+            <ul><li>História, cultura e método</li><li>Página de cada unidade</li><li>Página para futuros licenciados</li></ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span>Vídeo institucional</span></label>
+            <ul><li>Roteiro com história, cultura e valores</li><li>Versão completa</li><li>Versão para futuros licenciados</li></ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span>Instagram institucional da rede</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>WhatsApp comercial para atendimento de futuros licenciados</span></label></li>
+          <li><label class="item"><input type="checkbox" checked><span>Padrão de redes sociais<span class="done-label">concluído</span></span></label></li>
+          <li><label class="item"><input type="checkbox" checked><span>Guia de posts<span class="done-label">concluído</span></span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Fase 6</span><h4>Comercial</h4><p>Como a rede cresce e quem entra nela.</p></div>
+        <ul class="check">
+          <li><label class="item"><input type="checkbox"><span>Plano de expansão</span></label>
+            <ul><li>Meta de unidades por ano</li><li>Regiões prioritárias</li><li>Ritmo de abertura que a estrutura suporta</li></ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span>Viabilidade da marca</span></label>
+            <ul><li>Custo de suporte por unidade</li><li>Número de unidades para o modelo valer a pena</li></ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span>Proposta comercial</span></label>
+            <ul><li>Taxa inicial e/ou mensalidade</li><li>O que o licenciado recebe</li><li>Responsabilidades do licenciado</li></ul>
+          </li>
+          <li><label class="item"><input type="checkbox"><span>Perfil do licenciado ideal</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Critérios de seleção</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Funil de vendas: da captação à assinatura</span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase">
+        <div class="phase-title"><span class="tag">Fase 7</span><h4>Implantação e acompanhamento</h4><p>O que mantém a rede viva depois da assinatura.</p></div>
+        <ul class="check">
+          <li><label class="item"><input type="checkbox"><span>Treinamento inicial do licenciado</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Cronograma de inauguração</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Reuniões periódicas com as unidades</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Auditorias de qualidade</span></label></li>
+          <li><label class="item"><input type="checkbox"><span>Vida da rede</span></label>
+            <ul><li>Graduações coletivas</li><li>Seminários</li><li>Campeonato interno</li><li>Afiliação da equipe nas federações</li></ul>
+          </li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <p>Mesma experiência, mesmo método, mesma cultura.<small>Templo Jiu-Jitsu</small></p>
+    <svg viewBox="14 10 172 74" fill="#fff" aria-hidden="true"><use href="#templo"/></svg>
+  </div>
+</footer>
+
+</body>
+</html>
